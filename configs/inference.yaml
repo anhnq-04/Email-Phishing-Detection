@@ -1,0 +1,49 @@
+# ═══════════════════════════════════════════════
+# Inference Configuration — Phishing Detection System
+# ═══════════════════════════════════════════════
+
+# ── API Server ──
+api:
+  host: "0.0.0.0"
+  port: 8000
+  workers: 1
+  reload: true  # Tắt trong production
+
+# ── Feature Extraction ──
+feature_extraction:
+  timeout: 8
+  user_agent: >-
+    Mozilla/5.0 (Windows NT 10.0; Win64; x64)
+    AppleWebKit/537.36 (KHTML, like Gecko)
+    Chrome/122.0.0.0 Safari/537.36
+
+# ── Pipeline ──
+pipeline:
+  # Tầng nào được bật
+  enable_layer1: true   # FastScan  — local (rule-based)
+  enable_layer2: true   # CatBoost  — local (ML models)
+  enable_layer3: true   # Qwen LLM  — remote (vLLM server)
+
+  # Ngưỡng confidence
+  confidence_threshold: 0.9
+
+# ── Qwen vLLM Server (Layer 3) ──
+# Qwen chạy trên server vLLM riêng, API gọi qua OpenAI-compatible endpoint.
+# Cấu hình qua environment variables hoặc giá trị mặc định dưới đây.
+qwen_vllm:
+  base_url: "http://127.0.0.1:8001/v1"   # QWEN_VLLM_BASE_URL
+  model_name: "phishing"                   # QWEN_VLLM_MODEL
+  api_key: "dummy"                         # QWEN_VLLM_API_KEY
+  max_tokens: 2048                         # QWEN_MAX_TOKENS
+  timeout: 120                             # QWEN_TIMEOUT (giây)
+  enable_thinking: true                    # QWEN_ENABLE_THINKING
+  temperature: 0.6                         # QWEN_TEMPERATURE
+  top_k: 20                                # QWEN_TOP_K
+  min_p: 0.05                              # QWEN_MIN_P
+  seed: 3407                                 # QWEN_SEED
+
+# ── Logging ──
+logging:
+  level: "INFO"
+  log_file: "logs/inference.log"
+  format: "%(asctime)s [%(levelname)s] %(name)s — %(message)s"

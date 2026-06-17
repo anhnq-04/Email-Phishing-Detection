@@ -1,0 +1,136 @@
+# ============================================
+# SENSITIVE KEYWORDS - Phishing Detection
+# ============================================
+# Dùng trong Layer 1 (Rule-Based Fast Scan):
+#   1. _url_has_sensitive_keyword: kiểm tra URL path
+#   2. _check_keyword_density: đếm từ khóa nhạy cảm trong body
+# Mỗi dòng là 1 keyword (lowercase), dòng bắt đầu # là comment.
+# ============================================
+
+# ── URL PATH: Tiếng Anh (phổ biến trong URL phishing) ──
+login
+signin
+sign-in
+log-in
+verify
+secure
+account
+banking
+update
+confirm
+password
+otp
+reset
+unlock
+auth
+authentication
+suspend
+wallet
+checkout
+billing
+payment
+invoice
+refund
+upgrade
+reactivate
+recover
+validate
+
+# ── URL PATH: Tiếng Việt (slug dạng không dấu, dùng trong URL) ──
+dang-nhap
+dang-ky
+xac-nhan
+xac-minh
+xac-thuc
+cap-nhat
+cap-nhat-tai-khoan
+doi-mat-khau
+khoi-phuc
+mo-khoa
+tai-khoan
+bao-mat
+ngan-hang
+chuyen-tien
+thanh-toan
+hoa-don
+nap-tien
+rut-tien
+kich-hoat
+gia-han
+xac-nhan-giao-dich
+thong-tin-ca-nhan
+
+# ── BODY: Tiếng Việt (cụm từ phishing phổ biến trong nội dung email) ──
+tài khoản
+mật khẩu
+đăng nhập
+xác minh
+xác nhận
+xác thực
+cập nhật
+bảo mật
+ngân hàng
+chuyển tiền
+thanh toán
+giao dịch
+khẩn cấp
+ngay lập tức
+trong vòng 24 giờ
+trong vòng 48 giờ
+tạm khóa
+bị khóa
+bị tạm ngưng
+đình chỉ
+vô hiệu hóa
+tạm ngưng
+khôi phục
+mở khóa
+đổi mật khẩu
+thông tin cá nhân
+thẻ tín dụng
+thẻ ngân hàng
+số tài khoản
+mã otp
+mã xác nhận
+mã xác thực
+nhấn vào đây
+nhấp vào liên kết
+bấm vào link
+truy cập ngay
+hành động ngay
+kích hoạt
+gia hạn
+hết hạn
+nạp tiền
+rút tiền
+trúng thưởng
+nhận thưởng
+quà tặng
+hoàn tiền
+yêu cầu bồi thường
+chưa được xác minh
+hoạt động bất thường
+đăng nhập trái phép
+phát hiện bất thường
+cảnh báo bảo mật
+thông báo quan trọng
+
+# ── BODY: Tiếng Anh (vẫn xuất hiện trong email phishing VN) ──
+urgent
+important
+security
+verification
+confirmation
+authorized
+unauthorized
+suspended
+deactivated
+immediately
+expire
+expired
+click here
+update your account
+verify your identity
+unusual activity
+security alert
+action required

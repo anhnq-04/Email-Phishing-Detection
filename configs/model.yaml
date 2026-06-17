@@ -1,0 +1,44 @@
+# ═══════════════════════════════════════════════
+# Model Configuration — Phishing Detection System
+# ═══════════════════════════════════════════════
+
+# ── Layer 2: CatBoost URL Classifier ──
+catboost:
+  model_path: "models/catboost/catboost_model_reduced.cbm"
+  
+  selected_features:
+    - IsHTTPS
+    - LetterRatioInURL
+    - NoOfSubDomain
+    - DegitRatioInURL
+    - SpacialCharRatioInURL
+    - DomainLength
+    - NoOfExternalRef
+    - NoOfSelfRef
+    - LineOfCode
+    - NoOfImage
+    - LargestLineLength
+    - HasDescription
+    - HasSocialNet
+    - NoOfJS
+    - URLTitleMatchScore
+
+  label_map:
+    0: "Phishing"
+    1: "Legitimate"
+
+# ── Layer 3: Qwen LLM ──
+qwen:
+  model_path: "models/qwen"
+  base_model: "Qwen/Qwen2.5-3B-Instruct"
+  max_length: 512
+  temperature: 0.1
+
+# ── Layer 1: Rule-based Scanner ──
+layer1:
+  lists_dir: "data/raw/catboost/lists"
+  blacklist_file: "blacklist_domains.txt"
+  whitelist_file: "whitelist.json"
+  shorteners_file: "list_shorten_url.txt"
+  sensitive_keywords_file: "sensitive_keywords.txt"
+  free_domains_file: "free_domains.txt"

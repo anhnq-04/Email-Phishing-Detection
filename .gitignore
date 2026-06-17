@@ -1,0 +1,75 @@
+# ═══════════════════════════════════════════════════════
+# .gitignore — Phishing Detection System
+# ═══════════════════════════════════════════════════════
+
+# ── Python ──
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+dist/
+build/
+*.egg
+
+# ── Virtual Environment ──
+venv/
+.venv/
+env/
+.env
+
+# ── IDE ──
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.vs/
+
+# ── Jupyter Notebooks ──
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# ── Logs ──
+logs/*.log
+*.log
+pipeline.log
+
+# ── Data (large files) ──
+data/raw/**/*.csv
+data/raw/**/*.jsonl
+data/processed/**/*.csv
+data/processed/**/*.jsonl
+!data/raw/catboost/lists/
+
+# ── Models (large files) ──
+models/catboost/*.cbm
+models/qwen/*.safetensors
+models/qwen/*.json
+models/qwen/*.txt
+models/qwen/*.jinja
+models/qwen/*.bin
+models/qwen/*.md
+
+# ── Legacy workspaces (đã được merge vào src/) ──
+Đồ án tốt nghiệp/
+DATN/
+
+# ── Checkpoint files ──
+checkpoint.json
+
+# ── Credentials (CRITICAL!) ──
+*.json
+!configs/*.yaml
+!data/raw/catboost/lists/*.json
+!package.json
+!tsconfig.json
+
+# ── OS ──
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ── Node (frontend) ──
+node_modules/
+frontend/node_modules/

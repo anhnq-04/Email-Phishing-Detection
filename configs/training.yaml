@@ -1,0 +1,54 @@
+# ═══════════════════════════════════════════════
+# Training Configuration — Phishing Detection System
+# ═══════════════════════════════════════════════
+
+# ── CatBoost Training ──
+catboost:
+  data:
+    train_path: "data/processed/catboost/clean_dataset_url.csv"
+    test_size: 0.2
+    random_state: 42
+    
+  hyperparameters:
+    iterations: 1000
+    learning_rate: 0.05
+    depth: 6
+    l2_leaf_reg: 3
+    eval_metric: "F1"
+    loss_function: "Logloss"
+    random_seed: 42
+    verbose: 100
+    early_stopping_rounds: 50
+
+  output:
+    model_path: "models/catboost/catboost_model_reduced.cbm"
+
+# ── Qwen Fine-tuning ──
+qwen:
+  data:
+    train_path: "data/processed/qwen/train_en.jsonl"
+    eval_path: "data/processed/qwen/test_en.jsonl"
+
+  base_model: "Qwen/Qwen2.5-3B-Instruct"
+  
+  lora:
+    r: 16
+    lora_alpha: 32
+    lora_dropout: 0.05
+    target_modules:
+      - q_proj
+      - v_proj
+      - k_proj
+      - o_proj
+
+  training:
+    num_epochs: 3
+    per_device_train_batch_size: 4
+    gradient_accumulation_steps: 8
+    learning_rate: 2.0e-4
+    warmup_ratio: 0.03
+    max_seq_length: 512
+    fp16: true
+
+  output:
+    adapter_path: "models/qwen"

@@ -1,0 +1,39 @@
+# ═══════════════════════════════════════════════
+# Requirements — Phishing Detection System
+# ═══════════════════════════════════════════════
+
+# Core & Web API
+fastapi
+uvicorn
+pydantic
+requests
+urllib3
+
+# Data Processing & ML
+numpy
+pandas
+beautifulsoup4
+tldextract
+gliner
+catboost
+scikit-learn
+joblib
+tqdm
+
+# Modal Deployment
+modal
+
+# Large Language Model & Deep Learning
+torch
+unsloth
+transformers==4.56.2
+trl==0.22.2
+accelerate
+bitsandbytes
+peft
+datasets
+sentencepiece
+protobuf
+vllm
+openai
+nvidia-nvjitlink
