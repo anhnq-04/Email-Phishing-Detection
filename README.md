@@ -1,8 +1,8 @@
-# 🛡️ Phishing Detection System
+# Phishing Detection System
 
 Hệ thống phát hiện lừa đảo đa tầng (Multi-layer Phishing Detection System) — sử dụng kết hợp Rule-based, Machine Learning và Large Language Model.
 
-## 📐 Kiến trúc hệ thống
+## Kiến trúc hệ thống
 
 ```
                     ┌─────────────────┐
@@ -50,7 +50,7 @@ Hệ thống phát hiện lừa đảo đa tầng (Multi-layer Phishing Detectio
 - Fine-tuned Qwen model trên dataset email/SMS tiếng Việt & tiếng Anh
 - Phân tích nội dung sâu để phát hiện phishing tinh vi
 
-## 📁 Cấu trúc thư mục
+## Cấu trúc thư mục
 
 ```
 ├── configs/           # Cấu hình YAML (model, training, inference)
@@ -73,7 +73,7 @@ Hệ thống phát hiện lừa đảo đa tầng (Multi-layer Phishing Detectio
 └── requirements.txt
 ```
 
-## 🚀 Cài đặt
+## Cài đặt
 
 ```bash
 # Clone repository
@@ -93,6 +93,15 @@ pip install -r requirements.txt
 ### Chạy API Server
 ```bash
 uvicorn src.api.app:app --reload --port 8000
+python -m vllm.entrypoints.openai.api_server \
+  --model unsloth/qwen3-14b-unsloth-bnb-4bit \
+  --enable-lora \
+  --lora-modules phishing=models/qwen/model_final \
+  --quantization bitsandbytes \
+  --load-format bitsandbytes \
+  --max-model-len 4096 \
+  --port 8001 \
+  --gpu-memory-utilization 0.9
 ```
 
 ### Phân tích URL
@@ -115,7 +124,7 @@ result = pipeline.analyze_email(
 print(result)
 ```
 
-## 📊 API Endpoints
+## API Endpoints
 
 | Method | Endpoint | Mô tả |
 |--------|----------|--------|
@@ -125,4 +134,4 @@ print(result)
 
 ## 📝 License
 
-This project is for academic purposes (Đồ án tốt nghiệp).
+This project is for academic purposes.
